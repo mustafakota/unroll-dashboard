@@ -121,8 +121,9 @@ const Modal = ({ isOpen, onClose, title, children }) => (
             <button onClick={onClose} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-400 transition-colors">
               <X size={20} />
             </button>
-          </div className="pb-4">
+          <div className="pb-4">
           {children}
+          </div>
         </motion.div>
       </>
     )}
