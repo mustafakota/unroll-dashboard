@@ -922,8 +922,8 @@ const SettingsView = ({ settings, updateSettings }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // --- Main App Component ---
 
