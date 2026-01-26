@@ -93,41 +93,59 @@ const Toast = ({ message, type, onClose }) => (
   </motion.div>
 );
 
-const Modal = ({ isOpen, onClose, title, children }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <>
-        <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60]"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 40 }}
-          className="
-  fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-  w-full max-w-md
-  bg-white dark:bg-slate-800
-  rounded-3xl shadow-2xl z-[70]
-  p-8
-  border border-slate-100 dark:border-slate-700
-  max-h-[90vh] overflow-y-auto"
+const Modal = ({ isOpen, onClose, title, children }) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60]"
+          />
 
-        >
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{title}</h3>
-            <button onClick={onClose} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-400 transition-colors">
-              <X size={20} />
-            </button>
-          </div >
-          {children}
-        </motion.div>
-      </>
-    )}
-  </AnimatePresence>
-);
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 40 }}
+            className="
+              fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+              w-full max-w-md
+              bg-white dark:bg-slate-800
+              rounded-3xl shadow-2xl z-[70]
+              p-8
+              border border-slate-100 dark:border-slate-700
+              max-h-[90vh] overflow-y-auto
+            "
+          >
+            {/* Header */}
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {title}
+              </h3>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-400 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className="pb-4">
+              {children}
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
 
 const StatusBadge = ({ status }) => {
   const styles = {
